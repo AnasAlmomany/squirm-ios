@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C37BC77E20405D10008542E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BC77D20405D10008542E0 /* AppDelegate.swift */; };
+		C37BC78020405D10008542E0 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C37BC77F20405D10008542E0 /* GameScene.sks */; };
+		C37BC78220405D10008542E0 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = C37BC78120405D10008542E0 /* Actions.sks */; };
+		C37BC78420405D10008542E0 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BC78320405D10008542E0 /* GameScene.swift */; };
+		C37BC78620405D10008542E0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BC78520405D10008542E0 /* GameViewController.swift */; };
+		C37BC78920405D10008542E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37BC78720405D10008542E0 /* Main.storyboard */; };
+		C37BC78B20405D10008542E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C37BC78A20405D10008542E0 /* Assets.xcassets */; };
+		C37BC78E20405D10008542E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37BC78C20405D10008542E0 /* LaunchScreen.storyboard */; };
+		C37BC79920405D10008542E0 /* SquirmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BC79820405D10008542E0 /* SquirmTests.swift */; };
+		C37BC7A420405D10008542E0 /* SquirmUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BC7A320405D10008542E0 /* SquirmUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C37BC79520405D10008542E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C37BC77220405D10008542E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C37BC77920405D10008542E0;
+			remoteInfo = Squirm;
+		};
+		C37BC7A020405D10008542E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C37BC77220405D10008542E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C37BC77920405D10008542E0;
+			remoteInfo = Squirm;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C37BC77A20405D10008542E0 /* Squirm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Squirm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C37BC77D20405D10008542E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C37BC77F20405D10008542E0 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		C37BC78120405D10008542E0 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		C37BC78320405D10008542E0 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		C37BC78520405D10008542E0 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		C37BC78820405D10008542E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C37BC78A20405D10008542E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C37BC78D20405D10008542E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C37BC78F20405D10008542E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C37BC79420405D10008542E0 /* SquirmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SquirmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C37BC79820405D10008542E0 /* SquirmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquirmTests.swift; sourceTree = "<group>"; };
+		C37BC79A20405D10008542E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C37BC79F20405D10008542E0 /* SquirmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SquirmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C37BC7A320405D10008542E0 /* SquirmUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquirmUITests.swift; sourceTree = "<group>"; };
+		C37BC7A520405D10008542E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C37BC77720405D10008542E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C37BC79120405D10008542E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C37BC79C20405D10008542E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C37BC77120405D10008542E0 = {
+			isa = PBXGroup;
+			children = (
+				C37BC77C20405D10008542E0 /* Squirm */,
+				C37BC79720405D10008542E0 /* SquirmTests */,
+				C37BC7A220405D10008542E0 /* SquirmUITests */,
+				C37BC77B20405D10008542E0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C37BC77B20405D10008542E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C37BC77A20405D10008542E0 /* Squirm.app */,
+				C37BC79420405D10008542E0 /* SquirmTests.xctest */,
+				C37BC79F20405D10008542E0 /* SquirmUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C37BC77C20405D10008542E0 /* Squirm */ = {
+			isa = PBXGroup;
+			children = (
+				C37BC77D20405D10008542E0 /* AppDelegate.swift */,
+				C37BC77F20405D10008542E0 /* GameScene.sks */,
+				C37BC78120405D10008542E0 /* Actions.sks */,
+				C37BC78320405D10008542E0 /* GameScene.swift */,
+				C37BC78520405D10008542E0 /* GameViewController.swift */,
+				C37BC78F20405D10008542E0 /* Info.plist */,
+				C37BC7B1204060F7008542E0 /* Assets */,
+			);
+			path = Squirm;
+			sourceTree = "<group>";
+		};
+		C37BC79720405D10008542E0 /* SquirmTests */ = {
+			isa = PBXGroup;
+			children = (
+				C37BC79820405D10008542E0 /* SquirmTests.swift */,
+				C37BC79A20405D10008542E0 /* Info.plist */,
+			);
+			path = SquirmTests;
+			sourceTree = "<group>";
+		};
+		C37BC7A220405D10008542E0 /* SquirmUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C37BC7A320405D10008542E0 /* SquirmUITests.swift */,
+				C37BC7A520405D10008542E0 /* Info.plist */,
+			);
+			path = SquirmUITests;
+			sourceTree = "<group>";
+		};
+		C37BC7B1204060F7008542E0 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C37BC78A20405D10008542E0 /* Assets.xcassets */,
+				C37BC78720405D10008542E0 /* Main.storyboard */,
+				C37BC78C20405D10008542E0 /* LaunchScreen.storyboard */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C37BC77920405D10008542E0 /* Squirm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C37BC7A820405D10008542E0 /* Build configuration list for PBXNativeTarget "Squirm" */;
+			buildPhases = (
+				C37BC77620405D10008542E0 /* Sources */,
+				C37BC77720405D10008542E0 /* Frameworks */,
+				C37BC77820405D10008542E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Squirm;
+			productName = Squirm;
+			productReference = C37BC77A20405D10008542E0 /* Squirm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C37BC79320405D10008542E0 /* SquirmTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C37BC7AB20405D10008542E0 /* Build configuration list for PBXNativeTarget "SquirmTests" */;
+			buildPhases = (
+				C37BC79020405D10008542E0 /* Sources */,
+				C37BC79120405D10008542E0 /* Frameworks */,
+				C37BC79220405D10008542E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C37BC79620405D10008542E0 /* PBXTargetDependency */,
+			);
+			name = SquirmTests;
+			productName = SquirmTests;
+			productReference = C37BC79420405D10008542E0 /* SquirmTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C37BC79E20405D10008542E0 /* SquirmUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C37BC7AE20405D10008542E0 /* Build configuration list for PBXNativeTarget "SquirmUITests" */;
+			buildPhases = (
+				C37BC79B20405D10008542E0 /* Sources */,
+				C37BC79C20405D10008542E0 /* Frameworks */,
+				C37BC79D20405D10008542E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C37BC7A120405D10008542E0 /* PBXTargetDependency */,
+			);
+			name = SquirmUITests;
+			productName = SquirmUITests;
+			productReference = C37BC79F20405D10008542E0 /* SquirmUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C37BC77220405D10008542E0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Carl Ekman";
+				TargetAttributes = {
+					C37BC77920405D10008542E0 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					C37BC79320405D10008542E0 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C37BC77920405D10008542E0;
+					};
+					C37BC79E20405D10008542E0 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C37BC77920405D10008542E0;
+					};
+				};
+			};
+			buildConfigurationList = C37BC77520405D10008542E0 /* Build configuration list for PBXProject "Squirm" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C37BC77120405D10008542E0;
+			productRefGroup = C37BC77B20405D10008542E0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C37BC77920405D10008542E0 /* Squirm */,
+				C37BC79320405D10008542E0 /* SquirmTests */,
+				C37BC79E20405D10008542E0 /* SquirmUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C37BC77820405D10008542E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C37BC78920405D10008542E0 /* Main.storyboard in Resources */,
+				C37BC78020405D10008542E0 /* GameScene.sks in Resources */,
+				C37BC78B20405D10008542E0 /* Assets.xcassets in Resources */,
+				C37BC78E20405D10008542E0 /* LaunchScreen.storyboard in Resources */,
+				C37BC78220405D10008542E0 /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C37BC79220405D10008542E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C37BC79D20405D10008542E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C37BC77620405D10008542E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C37BC78420405D10008542E0 /* GameScene.swift in Sources */,
+				C37BC78620405D10008542E0 /* GameViewController.swift in Sources */,
+				C37BC77E20405D10008542E0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C37BC79020405D10008542E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C37BC79920405D10008542E0 /* SquirmTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C37BC79B20405D10008542E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C37BC7A420405D10008542E0 /* SquirmUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C37BC79620405D10008542E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C37BC77920405D10008542E0 /* Squirm */;
+			targetProxy = C37BC79520405D10008542E0 /* PBXContainerItemProxy */;
+		};
+		C37BC7A120405D10008542E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C37BC77920405D10008542E0 /* Squirm */;
+			targetProxy = C37BC7A020405D10008542E0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C37BC78720405D10008542E0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C37BC78820405D10008542E0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C37BC78C20405D10008542E0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C37BC78D20405D10008542E0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C37BC7A620405D10008542E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C37BC7A720405D10008542E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C37BC7A920405D10008542E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Squirm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.carlekman.Squirm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C37BC7AA20405D10008542E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Squirm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.carlekman.Squirm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C37BC7AC20405D10008542E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SquirmTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.carlekman.SquirmTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Squirm.app/Squirm";
+			};
+			name = Debug;
+		};
+		C37BC7AD20405D10008542E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SquirmTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.carlekman.SquirmTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Squirm.app/Squirm";
+			};
+			name = Release;
+		};
+		C37BC7AF20405D10008542E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SquirmUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.carlekman.SquirmUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Squirm;
+			};
+			name = Debug;
+		};
+		C37BC7B020405D10008542E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SquirmUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.carlekman.SquirmUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Squirm;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C37BC77520405D10008542E0 /* Build configuration list for PBXProject "Squirm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C37BC7A620405D10008542E0 /* Debug */,
+				C37BC7A720405D10008542E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C37BC7A820405D10008542E0 /* Build configuration list for PBXNativeTarget "Squirm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C37BC7A920405D10008542E0 /* Debug */,
+				C37BC7AA20405D10008542E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C37BC7AB20405D10008542E0 /* Build configuration list for PBXNativeTarget "SquirmTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C37BC7AC20405D10008542E0 /* Debug */,
+				C37BC7AD20405D10008542E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C37BC7AE20405D10008542E0 /* Build configuration list for PBXNativeTarget "SquirmUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C37BC7AF20405D10008542E0 /* Debug */,
+				C37BC7B020405D10008542E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C37BC77220405D10008542E0 /* Project object */;
+}

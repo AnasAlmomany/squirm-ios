@@ -13,7 +13,10 @@ struct Constants {
 
     static let foodTime: Int = 100
 
-    static let speedFactor: CGFloat = 5.0
-    static let turnFactor: CGFloat = 7.0
-    static let accelerationRate: CGFloat = 0.2
+    static let speedFactor: CGFloat = 4.0
+    static let turnFactor: CGFloat = 6.0
+    static let accelerationRate: CGFloat = 0.1
+    static let oscillationRate: CGFloat = 0.05
+    
+    static let oscillate: Bool = true
 }

@@ -5,6 +5,13 @@
 import Foundation
 import UIKit
 
+extension Int {
+
+    var asRadians: CGFloat {
+        return CGFloat(self) * CGFloat.pi / 180
+    }
+}
+
 extension ClosedRange {
 
     func clamp(_ value: Bound) -> Bound {

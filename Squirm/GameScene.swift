@@ -31,6 +31,9 @@ class GameScene: SKScene {
     private var degrees: Int = 90 {
         didSet { degrees = degrees % 360 }
     }
+    private var oscillation: Int = 0 {
+        didSet { oscillation = oscillation % 360 }
+    }
     private var acceleration: CGFloat = 0.0 {
         didSet { acceleration = (-1.0...1.0).clamp(acceleration) }
     }
@@ -44,13 +47,9 @@ class GameScene: SKScene {
 
     // MARK: - Computed Properties
 
-    private var radians: CGFloat {
-        get { return CGFloat(self.degrees) * CGFloat.pi / 180 }
-    }
-
     private var nextPosition: CGPoint {
-        let x = cos(self.radians) * Constants.speedFactor
-        let y = sin(self.radians) * Constants.speedFactor
+        let x = cos(self.degrees.asRadians) * Constants.speedFactor
+        let y = sin(self.degrees.asRadians) * Constants.speedFactor
 
         return CGPoint(x: x, y: y)
     }
@@ -109,6 +108,7 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.oscillation = 0
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
@@ -150,23 +150,36 @@ class GameScene: SKScene {
 
     private func incrementAngle() {
         var modifier: Int = 0
-        let rate = Constants.accelerationRate
+
+        let turn    = Constants.turnFactor
+        let accRate = Constants.accelerationRate
+        let oscRate = Int(Constants.oscillationRate * 360)
 
         switch self.direction {
         case .clockwise:
-            self.acceleration -= rate
+            self.acceleration -= accRate
+            modifier = Int(turn * self.acceleration)
+
         case .counterClockwise:
-            self.acceleration += rate
+            self.acceleration += accRate
+            modifier = Int(turn * self.acceleration)
+
         case .neutral:
-            if (-rate...rate).contains(self.acceleration) {
+            // Oscillate while neutral
+            if Constants.oscillate {
+                self.oscillation += oscRate
+                modifier = Int((turn / 2) * sin(self.oscillation.asRadians))
+            }
+
+            // Decelerate
+            if (-accRate...accRate).contains(self.acceleration) {
                 self.acceleration = 0
-            } else if self.acceleration > 0 {
-                self.acceleration -= rate
-            } else if self.acceleration < 0 {
-                self.acceleration += rate
+            } else if self.acceleration >= accRate {
+                self.acceleration -= accRate
+            } else if self.acceleration <= -accRate {
+                self.acceleration += accRate
             }
         }
-        modifier = Int(Constants.turnFactor * self.acceleration)
         self.degrees += modifier
     }
 

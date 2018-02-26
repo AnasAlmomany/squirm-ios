@@ -27,7 +27,6 @@ class GameScene: SKScene {
         return count > 0 ? self.wormNodes[count - 1] : nil
     }
 
-    private var direction: Direction = .neutral
     private var degrees: Int = 90 {
         didSet { degrees = degrees % 360 }
     }
@@ -36,6 +35,9 @@ class GameScene: SKScene {
     }
     private var acceleration: CGFloat = 0.0 {
         didSet { acceleration = (-1.0...1.0).clamp(acceleration) }
+    }
+    private var control: CGFloat = 0.0 {
+        didSet { control = (-1.0...1.0).clamp(control) }
     }
 
     // MARK: - Lifecycle
@@ -59,7 +61,6 @@ class GameScene: SKScene {
         let node = SKShapeNode(ellipseOf: CGSize(width: d, height: d))
         node.position = position
         node.fillColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        node.name = "\(self.wormNodes.count)"
 
         return node
     }
@@ -71,12 +72,6 @@ class GameScene: SKScene {
     }
 
     // MARK: - Logic
-
-    private func direction(for pointInSelf: CGPoint) -> Direction {
-        //guard abs(pointInSelf.x) > 20 else { return .neutral }
-
-        return pointInSelf.x < 0 ? .counterClockwise : .clockwise
-    }
 
     private func wormCollides(with pos: CGPoint, ignoringFirst ignored: Int = 0, tolerance t: CGFloat = 0) -> Bool {
         let r = Constants.nodeDiameter / 2
@@ -95,25 +90,22 @@ class GameScene: SKScene {
 
     // MARK: - Touch Events
     
-    func touchDown(atPoint pos: CGPoint) {
-        self.direction = self.direction(for: pos)
-    }
-    
-    func touchMoved(toPoint pos: CGPoint) {
-        self.direction = self.direction(for: pos)
+    func touch(atPoint pos: CGPoint) {
+        let bounds = Constants.controlBounds
+        self.control = max(min(pos.x / bounds, bounds), -bounds)
     }
     
     func touchUp(atPoint pos: CGPoint) {
-        self.direction = .neutral
+        self.control = 0
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.oscillation = 0
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        for t in touches { self.touch(atPoint: t.location(in: self)) }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        for t in touches { self.touch(atPoint: t.location(in: self)) }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -130,57 +122,60 @@ class GameScene: SKScene {
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime
         }
-        
         let dt = currentTime - self.lastUpdateTime
-
-        self.checkGrowth()
-        self.moveNodes(time: dt)
-        self.checkCollision()
-        self.incrementFood()
-        self.incrementAngle()
-
         for entity in self.entities {
             entity.update(deltaTime: dt)
         }
-        
         self.lastUpdateTime = currentTime
+
+        self.checkGrowth()
+        self.checkCollision()
+        self.moveNodes()
+        self.incrementFood()
+        self.incrementAngle()
     }
 
     // MARK: Loop logic
 
-    private func incrementAngle() {
-        var modifier: Int = 0
+    private func checkGrowth() {
+        let diff = self.score + Constants.startNodes - self.wormNodes.count
 
-        let turn    = Constants.turnFactor
-        let accRate = Constants.accelerationRate
-        let oscRate = Int(Constants.oscillationRate * 360)
+        guard diff > 0, let tail = self.tailNode else { return }
 
-        switch self.direction {
-        case .clockwise:
-            self.acceleration -= accRate
-            modifier = Int(turn * self.acceleration)
+        self.addNode(for: tail.position)
+    }
 
-        case .counterClockwise:
-            self.acceleration += accRate
-            modifier = Int(turn * self.acceleration)
+    private func checkCollision() {
+        guard let n = self.headNode else { return }
+        let r = Constants.nodeDiameter / 2
 
-        case .neutral:
-            // Oscillate while neutral
-            if Constants.oscillate {
-                self.oscillation += oscRate
-                modifier = Int((turn / 2) * sin(self.oscillation.asRadians))
-            }
-
-            // Decelerate
-            if (-accRate...accRate).contains(self.acceleration) {
-                self.acceleration = 0
-            } else if self.acceleration >= accRate {
-                self.acceleration -= accRate
-            } else if self.acceleration <= -accRate {
-                self.acceleration += accRate
-            }
+        // Check edges
+        if abs(n.position.x) > (self.size.width / 2) - r ||
+            abs(n.position.y) > (self.size.height / 2) - r {
+            self.gameOver()
         }
-        self.degrees += modifier
+
+        // Check body
+        if self.wormCollides(with: n.position, ignoringFirst: Constants.startNodes, tolerance: 0) {
+            self.gameOver()
+        }
+
+        // Check food
+        guard let f = self.foodNode else { return }
+        if self.wormCollides(with: f.position, tolerance: Constants.nodeDiameter / 2) {
+            self.incrementScore()
+        }
+    }
+
+    private func moveNodes() {
+        // Move tail to new head index
+        let headPos = self.headNode?.position ?? CGPoint.zero
+        let newHead = self.tailNode!
+        self.wormNodes = Array(self.wormNodes.dropLast())
+        self.wormNodes.insert(newHead, at: 0)
+
+        // Move new head
+        self.headNode?.position = headPos.movedBy(coordinates: self.nextPosition)
     }
 
     private func incrementFood() {
@@ -205,72 +200,45 @@ class GameScene: SKScene {
         }
     }
 
+    private func incrementAngle() {
+        var modifier: Int = 0
+
+        let turn    = Constants.turnFactor
+        let accRate = Constants.accelerationRate
+        let oscRate = Int(Constants.oscillationRate * 360)
+
+        if abs(self.control) > 0.1 {
+            let controlFactor = Constants.dynamicControl ? abs(self.control) : 1
+            let turnFactor = Constants.dynamicControl ? turn * 1.5 : turn
+
+            self.acceleration += self.control < 0 ? accRate : -accRate
+            modifier = Int(self.acceleration * turnFactor * controlFactor)
+
+        } else {
+            // Oscillate
+            if Constants.oscillate {
+                self.oscillation += oscRate
+                modifier = Int((turn / 2) * sin(self.oscillation.asRadians))
+            }
+            // Decelerate
+            if (-accRate...accRate).contains(self.acceleration) {
+                self.acceleration = 0
+            } else if self.acceleration >= accRate {
+                self.acceleration -= accRate
+            } else if self.acceleration <= -accRate {
+                self.acceleration += accRate
+            }
+        }
+
+        self.degrees += modifier
+    }
+
     private func incrementScore() {
         // TODO: Animate head node
         self.foodNode?.removeFromParent()
         self.foodNode = nil
         self.foodCounter = 0
-        self.score += 5
-    }
-
-    private func checkGrowth() {
-        let diff = self.score + Constants.startNodes - self.wormNodes.count
-
-        guard diff > 0, let tail = self.tailNode else { return }
-
-        self.addNode(for: tail.position)
-    }
-
-    private func moveNodes(time: TimeInterval) {
-        // Move tail to new head index
-        let headPos = self.headNode?.position ?? CGPoint.zero
-        let newHead = self.tailNode!
-        self.wormNodes = Array(self.wormNodes.dropLast())
-        self.wormNodes.insert(newHead, at: 0)
-
-        // Move new head
-        self.headNode?.position = headPos.movedBy(coordinates: self.nextPosition)
-
-        /*
-        let nodes = self.wormNodes
-        for (i, node) in nodes.enumerated() {
-            if i > 0 {
-                // Move body node
-                let prev = nodes[i - 1]
-                let pos = prev.position
-                let move = SKAction.move(to: pos, duration: time)
-                move.timingMode = SKActionTimingMode.linear
-                node.run(move)
-            } else {
-                // Move head node
-                let pos = self.nextPosition
-                let move = SKAction.moveBy(x: pos.x, y: pos.y, duration: time)
-                move.timingMode = SKActionTimingMode.linear
-                node.run(move)
-            }
-        }*/
-    }
-
-    private func checkCollision() {
-        guard let n = self.headNode else { return }
-        let r = Constants.nodeDiameter / 2
-
-        // Check edges
-        if abs(n.position.x) > (self.size.width / 2) - r ||
-           abs(n.position.y) > (self.size.height / 2) - r {
-            self.gameOver()
-        }
-
-        // Check body
-        if self.wormCollides(with: n.position, ignoringFirst: Constants.startNodes, tolerance: 0) {
-            self.gameOver()
-        }
-
-        // Check food
-        guard let f = self.foodNode else { return }
-        if self.wormCollides(with: f.position, tolerance: Constants.nodeDiameter - 2) {
-            self.incrementScore()
-        }
+        self.score += Constants.scoreIncrement
     }
 
     private func gameOver() {
@@ -279,17 +247,8 @@ class GameScene: SKScene {
             n.removeFromParent()
         }
 
-        self.headNode?.position = CGPoint(x: 0, y: 0)
+        self.headNode?.position = CGPoint.zero
         self.wormNodes = [self.headNode!]
         self.score = 0
     }
-}
-
-// MARK: - Structs
-
-fileprivate enum Direction {
-
-    case neutral
-    case clockwise
-    case counterClockwise
 }

@@ -10,6 +10,9 @@
 		C3580BA620444D3100FC80D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3580BA520444D3100FC80D5 /* Constants.swift */; };
 		C3580BA720444D3100FC80D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3580BA520444D3100FC80D5 /* Constants.swift */; };
 		C3580BA820444D3100FC80D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3580BA520444D3100FC80D5 /* Constants.swift */; };
+		C3580BAA2044504200FC80D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3580BA92044504200FC80D5 /* Extensions.swift */; };
+		C3580BAB2044504200FC80D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3580BA92044504200FC80D5 /* Extensions.swift */; };
+		C3580BAC2044504200FC80D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3580BA92044504200FC80D5 /* Extensions.swift */; };
 		C37BC77E20405D10008542E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BC77D20405D10008542E0 /* AppDelegate.swift */; };
 		C37BC78020405D10008542E0 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C37BC77F20405D10008542E0 /* GameScene.sks */; };
 		C37BC78220405D10008542E0 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = C37BC78120405D10008542E0 /* Actions.sks */; };
@@ -41,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		C3580BA520444D3100FC80D5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C3580BA92044504200FC80D5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C37BC77A20405D10008542E0 /* Squirm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Squirm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37BC77D20405D10008542E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C37BC77F20405D10008542E0 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 				C37BC78320405D10008542E0 /* GameScene.swift */,
 				C37BC78520405D10008542E0 /* GameViewController.swift */,
 				C3580BA520444D3100FC80D5 /* Constants.swift */,
+				C3580BA92044504200FC80D5 /* Extensions.swift */,
 				C37BC78F20405D10008542E0 /* Info.plist */,
 				C37BC7B1204060F7008542E0 /* Assets */,
 			);
@@ -283,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3580BAA2044504200FC80D5 /* Extensions.swift in Sources */,
 				C37BC78420405D10008542E0 /* GameScene.swift in Sources */,
 				C37BC78620405D10008542E0 /* GameViewController.swift in Sources */,
 				C37BC77E20405D10008542E0 /* AppDelegate.swift in Sources */,
@@ -295,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C37BC79920405D10008542E0 /* SquirmTests.swift in Sources */,
+				C3580BAB2044504200FC80D5 /* Extensions.swift in Sources */,
 				C3580BA720444D3100FC80D5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C37BC7A420405D10008542E0 /* SquirmUITests.swift in Sources */,
+				C3580BAC2044504200FC80D5 /* Extensions.swift in Sources */,
 				C3580BA820444D3100FC80D5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

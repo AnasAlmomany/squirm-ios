@@ -31,6 +31,9 @@ class GameScene: SKScene {
     private var degrees: Int = 90 {
         didSet { degrees = degrees % 360 }
     }
+    private var acceleration: CGFloat = 0.0 {
+        didSet { acceleration = (-1.0...1.0).clamp(acceleration) }
+    }
 
     // MARK: - Lifecycle
 
@@ -39,16 +42,10 @@ class GameScene: SKScene {
         self.addNode(for: CGPoint.zero)
     }
 
-    // MARK: - Logic
+    // MARK: - Computed Properties
 
     private var radians: CGFloat {
         get { return CGFloat(self.degrees) * CGFloat.pi / 180 }
-    }
-
-    private func direction(for pointInSelf: CGPoint) -> Direction {
-        //guard abs(pointInSelf.x) > 20 else { return .neutral }
-
-        return pointInSelf.x < 0 ? .counterClockwise : .clockwise
     }
 
     private var nextPosition: CGPoint {
@@ -72,6 +69,14 @@ class GameScene: SKScene {
         let node = self.node(for: position)
         self.wormNodes.append(node)
         self.addChild(node)
+    }
+
+    // MARK: - Logic
+
+    private func direction(for pointInSelf: CGPoint) -> Direction {
+        //guard abs(pointInSelf.x) > 20 else { return .neutral }
+
+        return pointInSelf.x < 0 ? .counterClockwise : .clockwise
     }
 
     private func wormCollides(with pos: CGPoint, ignoringFirst ignored: Int = 0, tolerance t: CGFloat = 0) -> Bool {
@@ -141,22 +146,34 @@ class GameScene: SKScene {
         self.lastUpdateTime = currentTime
     }
 
+    // MARK: Loop logic
+
     private func incrementAngle() {
+        var modifier: Int = 0
+        let rate = Constants.accelerationRate
+
         switch self.direction {
         case .clockwise:
-            self.degrees = self.degrees - Int(Constants.turnFactor)
+            self.acceleration -= rate
         case .counterClockwise:
-            self.degrees = self.degrees + Int(Constants.turnFactor)
+            self.acceleration += rate
         case .neutral:
-            break
+            if (-rate...rate).contains(self.acceleration) {
+                self.acceleration = 0
+            } else if self.acceleration > 0 {
+                self.acceleration -= rate
+            } else if self.acceleration < 0 {
+                self.acceleration += rate
+            }
         }
+        modifier = Int(Constants.turnFactor * self.acceleration)
+        self.degrees += modifier
     }
 
     private func incrementFood() {
         guard self.foodNode == nil else { return }
 
-        self.foodCounter = self.foodCounter + 1
-
+        self.foodCounter += 1
         if self.foodCounter >= Constants.foodTime {
             self.foodCounter = 0
 
@@ -166,7 +183,7 @@ class GameScene: SKScene {
                 let randY = self.rng.nextInt()
                 spawn = CGPoint(x: randX, y: randY) // Currenty only spawns within 150x150
 
-            } while self.wormCollides(with: spawn, tolerance: 10)
+            } while self.wormCollides(with: spawn, tolerance: 20)
 
             let node = self.node(for: spawn)
             self.foodNode = node
@@ -180,7 +197,7 @@ class GameScene: SKScene {
         self.foodNode?.removeFromParent()
         self.foodNode = nil
         self.foodCounter = 0
-        self.score = self.score + 5
+        self.score += 5
     }
 
     private func checkGrowth() {
@@ -251,6 +268,7 @@ class GameScene: SKScene {
 
         self.headNode?.position = CGPoint(x: 0, y: 0)
         self.wormNodes = [self.headNode!]
+        self.score = 0
     }
 }
 
@@ -261,17 +279,4 @@ fileprivate enum Direction {
     case neutral
     case clockwise
     case counterClockwise
-}
-
-// MARK: - Extensions
-
-fileprivate extension CGPoint {
-
-    func collides(with p: CGPoint, tolerance t: CGFloat = 0) -> Bool {
-        return abs(self.x - p.x) < t && abs(self.y - p.y) < t
-    }
-
-    func movedBy(coordinates c: CGPoint) -> CGPoint {
-        return CGPoint(x: self.x + c.x, y: self.y + c.y)
-    }
 }

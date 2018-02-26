@@ -28,7 +28,7 @@ class GameScene: SKScene {
         return count > 0 ? self.wormNodes[count - 1] : nil
     }
 
-    private var startNodes: Int = 10
+    private var startNodes: Int = 5
     private let nodeDiameter: CGFloat = 20.0
     private let speedFactor: CGFloat = 5.0
     private let turnFactor: CGFloat = 7.0
@@ -42,10 +42,7 @@ class GameScene: SKScene {
 
     override func sceneDidLoad() {
         self.rng = GKRandomDistribution(lowestValue: 0, highestValue: 150)
-
-        let node = self.node(for: CGPoint.zero)
-        self.wormNodes.append(node)
-        self.addChild(node)
+        self.addNode(for: CGPoint.zero)
     }
 
     // MARK: - Logic
@@ -72,8 +69,15 @@ class GameScene: SKScene {
         let node = SKShapeNode(ellipseOf: CGSize(width: d, height: d))
         node.position = position
         node.fillColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        node.name = "\(self.wormNodes.count)"
 
         return node
+    }
+
+    private func addNode(for position: CGPoint) {
+        let node = self.node(for: position)
+        self.wormNodes.append(node)
+        self.addChild(node)
     }
 
     private func wormCollides(with pos: CGPoint, ignoringFirst ignored: Int = 0, tolerance t: CGFloat = 0) -> Bool {
@@ -131,10 +135,10 @@ class GameScene: SKScene {
         let dt = currentTime - self.lastUpdateTime
 
         self.checkGrowth()
+        self.moveNodes(time: dt)
         self.checkCollision()
         self.incrementFood()
         self.incrementAngle()
-        self.moveNodes(time: dt)
 
         for entity in self.entities {
             entity.update(deltaTime: dt)
@@ -187,16 +191,24 @@ class GameScene: SKScene {
 
     private func checkGrowth() {
         let diff = self.score + self.startNodes - self.wormNodes.count
+
         guard diff > 0, let tail = self.tailNode else { return }
 
-        let node = self.node(for: tail.position)
-        self.wormNodes.append(node)
-        self.addChild(node) // FIXME: Place under or make worm one single node?
+        self.addNode(for: tail.position)
     }
 
     private func moveNodes(time: TimeInterval) {
-        let nodes = self.wormNodes
+        // Move tail to new head index
+        let headPos = self.headNode?.position ?? CGPoint.zero
+        let newHead = self.tailNode!
+        self.wormNodes = Array(self.wormNodes.dropLast())
+        self.wormNodes.insert(newHead, at: 0)
 
+        // Move new head
+        self.headNode?.position = headPos.movedBy(coordinates: self.nextPosition)
+
+        /*
+        let nodes = self.wormNodes
         for (i, node) in nodes.enumerated() {
             if i > 0 {
                 // Move body node
@@ -212,7 +224,7 @@ class GameScene: SKScene {
                 move.timingMode = SKActionTimingMode.linear
                 node.run(move)
             }
-        }
+        }*/
     }
 
     private func checkCollision() {
@@ -263,5 +275,9 @@ fileprivate extension CGPoint {
 
     func collides(with p: CGPoint, tolerance t: CGFloat = 0) -> Bool {
         return abs(self.x - p.x) < t && abs(self.y - p.y) < t
+    }
+
+    func movedBy(coordinates c: CGPoint) -> CGPoint {
+        return CGPoint(x: self.x + c.x, y: self.y + c.y)
     }
 }

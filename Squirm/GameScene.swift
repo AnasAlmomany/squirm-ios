@@ -15,7 +15,6 @@ class GameScene: SKScene {
     private var score: Int = 0
 
     private var foodCounter: Int = 0
-    private var foodTime: Int = 100
     private var foodNode: SKShapeNode?
 
     private var wormNodes: [SKShapeNode] = []
@@ -27,11 +26,6 @@ class GameScene: SKScene {
         let count = self.wormNodes.count
         return count > 0 ? self.wormNodes[count - 1] : nil
     }
-
-    private var startNodes: Int = 5
-    private let nodeDiameter: CGFloat = 20.0
-    private let speedFactor: CGFloat = 5.0
-    private let turnFactor: CGFloat = 7.0
 
     private var direction: Direction = .neutral
     private var degrees: Int = 90 {
@@ -58,14 +52,14 @@ class GameScene: SKScene {
     }
 
     private var nextPosition: CGPoint {
-        let x = cos(self.radians) * self.speedFactor
-        let y = sin(self.radians) * self.speedFactor
+        let x = cos(self.radians) * Constants.speedFactor
+        let y = sin(self.radians) * Constants.speedFactor
 
         return CGPoint(x: x, y: y)
     }
 
     private func node(for position: CGPoint) -> SKShapeNode {
-        let d = self.nodeDiameter
+        let d = Constants.nodeDiameter
         let node = SKShapeNode(ellipseOf: CGSize(width: d, height: d))
         node.position = position
         node.fillColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -81,7 +75,7 @@ class GameScene: SKScene {
     }
 
     private func wormCollides(with pos: CGPoint, ignoringFirst ignored: Int = 0, tolerance t: CGFloat = 0) -> Bool {
-        let r = self.nodeDiameter / 2
+        let r = Constants.nodeDiameter / 2
         var nodes = self.wormNodes
         for _ in 0..<ignored {
             nodes = Array(nodes.dropFirst())
@@ -150,9 +144,9 @@ class GameScene: SKScene {
     private func incrementAngle() {
         switch self.direction {
         case .clockwise:
-            self.degrees = self.degrees - Int(self.turnFactor)
+            self.degrees = self.degrees - Int(Constants.turnFactor)
         case .counterClockwise:
-            self.degrees = self.degrees + Int(self.turnFactor)
+            self.degrees = self.degrees + Int(Constants.turnFactor)
         case .neutral:
             break
         }
@@ -163,7 +157,7 @@ class GameScene: SKScene {
 
         self.foodCounter = self.foodCounter + 1
 
-        if self.foodCounter >= self.foodTime {
+        if self.foodCounter >= Constants.foodTime {
             self.foodCounter = 0
 
             var spawn = CGPoint.zero
@@ -190,7 +184,7 @@ class GameScene: SKScene {
     }
 
     private func checkGrowth() {
-        let diff = self.score + self.startNodes - self.wormNodes.count
+        let diff = self.score + Constants.startNodes - self.wormNodes.count
 
         guard diff > 0, let tail = self.tailNode else { return }
 
@@ -229,7 +223,7 @@ class GameScene: SKScene {
 
     private func checkCollision() {
         guard let n = self.headNode else { return }
-        let r = self.nodeDiameter / 2
+        let r = Constants.nodeDiameter / 2
 
         // Check edges
         if abs(n.position.x) > (self.size.width / 2) - r ||
@@ -238,13 +232,13 @@ class GameScene: SKScene {
         }
 
         // Check body
-        if self.wormCollides(with: n.position, ignoringFirst: self.startNodes, tolerance: 0) {
+        if self.wormCollides(with: n.position, ignoringFirst: Constants.startNodes, tolerance: 0) {
             self.gameOver()
         }
 
         // Check food
         guard let f = self.foodNode else { return }
-        if self.wormCollides(with: f.position, tolerance: self.nodeDiameter - 2) {
+        if self.wormCollides(with: f.position, tolerance: Constants.nodeDiameter - 2) {
             self.incrementScore()
         }
     }

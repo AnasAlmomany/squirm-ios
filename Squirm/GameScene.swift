@@ -10,15 +10,16 @@ class GameScene: SKScene {
     var entities = [GKEntity]()
     var graphs = [String: GKGraph]()
 
+    private var wormNode: SKShapeNode?
     private var worm: Worm!
     private var control: GameControl!
     private var rng: GKRandomDistribution!
 
+    private var foodNode: SKShapeNode?
+    private var foodCounter: Int = 0
+
     private var lastUpdateTime: TimeInterval = 0
     private var score: Int = 0
-
-    private var foodCounter: Int = 0
-    private var foodNode: SKShapeNode?
 
     // MARK: - Lifecycle
 
@@ -26,41 +27,7 @@ class GameScene: SKScene {
         self.worm = Worm()
         self.control = GameControl()
         self.rng = GKRandomDistribution(lowestValue: 0, highestValue: 150)
-        self.addWormNode(for: CGPoint.zero)
-    }
-
-    // MARK: - Computed Properties
-
-    private func node(for position: CGPoint) -> SKShapeNode {
-        let d = Constants.nodeDiameter
-        let node = SKShapeNode(ellipseOf: CGSize(width: d, height: d))
-        node.position = position
-        node.fillColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-
-        return node
-    }
-
-    private func addWormNode(for position: CGPoint) {
-        let node = self.node(for: position)
-        self.worm.nodes.append(node)
-        self.addChild(node)
-    }
-
-    // MARK: - Logic
-
-    private func wormCollides(with pos: CGPoint, ignoringFirst ignored: Int = 0, tolerance t: CGFloat = 0) -> Bool {
-        let r = Constants.nodeDiameter / 2
-        var nodes = self.worm.nodes
-        for _ in 0..<ignored {
-            nodes = Array(nodes.dropFirst())
-        }
-        for n in nodes {
-            if n.position.collides(with: pos, tolerance: r + t) {
-                return true
-            }
-        }
-
-        return false
+        self.worm.points.append(CGPoint.zero)
     }
 
     // MARK: - Touch Events
@@ -105,7 +72,10 @@ class GameScene: SKScene {
 
         self.checkGrowth()
         self.checkCollision()
-        self.moveNodes()
+
+        self.movePoints()
+        self.drawWorm()
+
         self.incrementFood()
         self.incrementAngle()
     }
@@ -114,10 +84,9 @@ class GameScene: SKScene {
 
     private func checkGrowth() {
         let diff = self.score + Constants.startNodes - self.worm.count
-
         guard diff > 0, let tail = self.worm.tail else { return }
 
-        self.addWormNode(for: tail.position)
+        self.worm.points.append(tail)
     }
 
     private func checkCollision() {
@@ -125,32 +94,28 @@ class GameScene: SKScene {
         let r = Constants.nodeDiameter / 2
 
         // Check edges
-        if abs(n.position.x) > (self.size.width / 2) - r ||
-            abs(n.position.y) > (self.size.height / 2) - r {
+        if abs(n.x) > (self.size.width / 2) - r ||
+            abs(n.y) > (self.size.height / 2) - r {
             self.gameOver()
         }
 
         // Check body
-        if self.wormCollides(with: n.position, ignoringFirst: Constants.startNodes, tolerance: 0) {
+        if self.worm.collides(with: n, ignoringFirst: Constants.startNodes, tolerance: 0) {
             self.gameOver()
         }
 
         // Check food
         guard let f = self.foodNode else { return }
-        if self.wormCollides(with: f.position, tolerance: Constants.nodeDiameter / 2) {
+        if self.worm.collides(with: f.position, tolerance: Constants.nodeDiameter / 2) {
             self.incrementScore()
         }
     }
 
-    private func moveNodes() {
-        // Move tail to new head index
-        let headPos = self.worm.head!.position
-        let newHead = self.worm.tail!
-        self.worm.nodes = Array(self.worm.nodes.dropLast())
-        self.worm.nodes.insert(newHead, at: 0)
+    private func movePoints() {
+        guard let head = self.worm.head else { return }
 
-        // Move new head
-        self.worm.head!.position = headPos.movedBy(coordinates: self.control.nextPosition)
+        self.worm.points = Array(self.worm.points.dropLast())
+        self.worm.points.insert(head.movedBy(coordinates: self.control.nextPosition), at: 0)
     }
 
     private func incrementFood() {
@@ -166,9 +131,9 @@ class GameScene: SKScene {
                 let randY = self.rng.nextInt()
                 spawn = CGPoint(x: randX, y: randY) // Currenty only spawns within 150x150
 
-            } while self.wormCollides(with: spawn, tolerance: 20)
+            } while self.worm.collides(with: spawn, tolerance: 20)
 
-            let node = self.node(for: spawn)
+            let node = NodeFactory.node(for: spawn)
             self.foodNode = node
             self.addChild(node)
             node.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut") // FIXME: Animation
@@ -186,14 +151,21 @@ class GameScene: SKScene {
         self.score += Constants.scoreIncrement
     }
 
-    private func gameOver() {
-        let bodyNodes = Array(self.worm.nodes.dropFirst())
-        for n in bodyNodes {
-            n.removeFromParent()
-        }
+    private func drawWorm() {
+        guard let node = NodeFactory.pathNode(for: self.worm.points) else { return }
+        self.wormNode?.removeFromParent()
+        self.wormNode = node
+        self.addChild(node)
+    }
 
-        self.worm.head!.position = CGPoint.zero
-        self.worm.nodes = [self.worm.head!]
+    private func gameOver() {
+        self.wormNode?.removeFromParent()
+        self.worm.points = [CGPoint.zero]
+
+        self.foodNode?.removeFromParent()
+        self.foodNode = nil
+
+        self.foodCounter = 0
         self.score = 0
     }
 }

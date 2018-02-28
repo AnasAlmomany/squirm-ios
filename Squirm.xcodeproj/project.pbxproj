@@ -29,6 +29,7 @@
 		C37BC78E20405D10008542E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37BC78C20405D10008542E0 /* LaunchScreen.storyboard */; };
 		C37BC79920405D10008542E0 /* SquirmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BC79820405D10008542E0 /* SquirmTests.swift */; };
 		C37BC7A420405D10008542E0 /* SquirmUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BC7A320405D10008542E0 /* SquirmUITests.swift */; };
+		C3E3F73020471A04000F6B66 /* NodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E3F72F20471A04000F6B66 /* NodeFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		C37BC79F20405D10008542E0 /* SquirmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SquirmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37BC7A320405D10008542E0 /* SquirmUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquirmUITests.swift; sourceTree = "<group>"; };
 		C37BC7A520405D10008542E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3E3F72F20471A04000F6B66 /* NodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				C37BC78320405D10008542E0 /* GameScene.swift */,
 				C37BC78520405D10008542E0 /* GameViewController.swift */,
 				C3580BB120447A0D00FC80D5 /* GameControl.swift */,
+				C3E3F72F20471A04000F6B66 /* NodeFactory.swift */,
 				C3580BAD2044786700FC80D5 /* Worm.swift */,
 				C3580BA520444D3100FC80D5 /* Constants.swift */,
 				C3580BA92044504200FC80D5 /* Extensions.swift */,
@@ -300,6 +303,7 @@
 			files = (
 				C3580BB220447A0D00FC80D5 /* GameControl.swift in Sources */,
 				C3580BAA2044504200FC80D5 /* Extensions.swift in Sources */,
+				C3E3F73020471A04000F6B66 /* NodeFactory.swift in Sources */,
 				C37BC78420405D10008542E0 /* GameScene.swift in Sources */,
 				C3580BAE2044786700FC80D5 /* Worm.swift in Sources */,
 				C37BC78620405D10008542E0 /* GameViewController.swift in Sources */,

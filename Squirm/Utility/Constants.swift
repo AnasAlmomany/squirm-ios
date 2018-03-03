@@ -22,4 +22,5 @@ struct Constants {
     
     static let oscillate: Bool = true           // True for oscillation while neutral
     static let dynamicControl: Bool = true      // True for gradual x-axis control input
+    static let boundless: Bool = true           // True for using torus topology
 }

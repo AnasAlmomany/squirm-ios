@@ -98,6 +98,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C36A0ADB204B3206009F56EA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C37BC78520405D10008542E0 /* GameViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C36A0ADC204B3227009F56EA /* Game Scene */ = {
+			isa = PBXGroup;
+			children = (
+				C37BC78320405D10008542E0 /* GameScene.swift */,
+				C37BC77F20405D10008542E0 /* GameScene.sks */,
+				C37BC78120405D10008542E0 /* Actions.sks */,
+			);
+			path = "Game Scene";
+			sourceTree = "<group>";
+		};
+		C36A0ADD204B3253009F56EA /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				C3580BA520444D3100FC80D5 /* Constants.swift */,
+				C3580BA92044504200FC80D5 /* Extensions.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		C36A0ADE204B3264009F56EA /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C37BC77D20405D10008542E0 /* AppDelegate.swift */,
+				C37BC78F20405D10008542E0 /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		C36A0ADF204B3276009F56EA /* Game Logic */ = {
+			isa = PBXGroup;
+			children = (
+				C3580BAD2044786700FC80D5 /* Worm.swift */,
+				C3580BB120447A0D00FC80D5 /* GameControl.swift */,
+				C3E3F72F20471A04000F6B66 /* NodeFactory.swift */,
+			);
+			path = "Game Logic";
+			sourceTree = "<group>";
+		};
 		C37BC77120405D10008542E0 = {
 			isa = PBXGroup;
 			children = (
@@ -121,17 +167,11 @@
 		C37BC77C20405D10008542E0 /* Squirm */ = {
 			isa = PBXGroup;
 			children = (
-				C37BC77D20405D10008542E0 /* AppDelegate.swift */,
-				C37BC77F20405D10008542E0 /* GameScene.sks */,
-				C37BC78120405D10008542E0 /* Actions.sks */,
-				C37BC78320405D10008542E0 /* GameScene.swift */,
-				C37BC78520405D10008542E0 /* GameViewController.swift */,
-				C3580BB120447A0D00FC80D5 /* GameControl.swift */,
-				C3E3F72F20471A04000F6B66 /* NodeFactory.swift */,
-				C3580BAD2044786700FC80D5 /* Worm.swift */,
-				C3580BA520444D3100FC80D5 /* Constants.swift */,
-				C3580BA92044504200FC80D5 /* Extensions.swift */,
-				C37BC78F20405D10008542E0 /* Info.plist */,
+				C36A0ADE204B3264009F56EA /* Application */,
+				C36A0ADB204B3206009F56EA /* View Controllers */,
+				C36A0ADC204B3227009F56EA /* Game Scene */,
+				C36A0ADF204B3276009F56EA /* Game Logic */,
+				C36A0ADD204B3253009F56EA /* Utility */,
 				C37BC7B1204060F7008542E0 /* Assets */,
 			);
 			path = Squirm;
